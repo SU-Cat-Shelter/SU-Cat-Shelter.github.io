@@ -1,22 +1,26 @@
 const { readFile } = require("../util");
 
-function staticFileHandler(req, res) {
+ function staticFileHandler(req, res) {
   if (req.url.endsWith(".css")) {
     // handle stylesheet
-    const data = readFile(req.url);
-    res.writeHead(200, ["Content-Type", "text/css"]);
-    res.write(data);
-    res.end();
+     sendFile(req.url, 'text/css', res);
+
     return true;
   } else if (req.url.endsWith(".ico")) {
     // handle fav icon
-    const data = readFile(req.url);
-    res.writeHead(200, ["Content-Type", "image/svg+xml"]);
-    res.write(data);
-    res.end();
+
+     sendFile(req.url, 'image/svg+xml', res);
+
     return true;
   }
   return false;
+}
+
+async function sendFile(path,contentType, res) {
+  const data = await readFile(path);
+  res.writeHead(200, contentType);
+
+  data.pipe(res);
 }
 
 module.exports = {

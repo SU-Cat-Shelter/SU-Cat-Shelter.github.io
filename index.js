@@ -10,12 +10,12 @@ const routes = {
 };
 
 http
-  .createServer((req, res) => {
+  .createServer(async (req, res) => {
     const route = routes[req.url];
     if (typeof route === "function") {
       route(req, res);
       return;
-    } else if (staticFileHandler(req, res)) {
+    } else if (await staticFileHandler(req, res)) {
       return;
     } 
     res.writeHead(404, ["Content-Type", "text/plaint"]);
