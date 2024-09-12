@@ -1,0 +1,12 @@
+{
+  "name": "resources",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "VD",
+  "license": "ISC",
+  "description": "This will be SoftUni Project catShelter"
+}
